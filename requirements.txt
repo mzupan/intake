@@ -1,3 +1,4 @@
 pymongo==1.7
 mongoengine
 django
+simplejson
