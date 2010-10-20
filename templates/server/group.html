@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<section class="column width6 first">
+	
+		<table id="report" class="stylized full" style="">
+			<thead>
+				<tr>
+					<th>Log File</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for log in group.logs %}
+					<tr>
+						<td class=""><a href="/group/{{group.slug}}/?log={{log}}">{{log}}</a> </br></td>
+					</tr>
+				{% endfor %}	
+			</tbody>
+		</table>
+		
+	</section>
+	
+	<aside class="column width2">
+		<div id="rightmenu">
+			<header>
+				<h3>Overview</h3>
+			</header>
+			<dl class="first">
+				Comming soon
+			</dl>
+		</div>
+	</aside>
+{% endblock %}

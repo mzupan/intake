@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8" /> 
+        <title>ServerPlot - Manage your servers!</title> 
+        <meta name="description" content="ServerPlot see your server's performance in real time" /> 
+        <meta name="keywords" content="serverplot, server, plot, graph, realtime, real, time, chart" /> 
+        
+        <!-- We need to emulate IE7 only when we are to use excanvas --> 
+        <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+        <![endif]--> 
+        
+        <!-- Favicons --> 
+        <link rel="shortcut icon" type="image/png" href="/images/favicons/favicon.png"/> 
+        <link rel="icon" type="image/png" href="/images/favicons/favicon.png"/> 
+        
+        <!-- Main Stylesheet --> 
+        <link rel="stylesheet" href="/css/style.css" type="text/css" /> 
+        
+        <!-- Your Custom Stylesheet --> 
+        <link rel="stylesheet" href="/css/custom.css" type="text/css" /> 
+        {% block css_content %}{% endblock %}
+
+        <!--[if IE]>
+        <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+        <script src="/js/html5.js"></script>
+        <![endif]--> 
+        <!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js --> 
+        <!--[if lt IE 8]>
+        <script src="/js/IE8.js"></script>
+        <![endif]--> 
+        
+        <script type='text/javascript' src='/js/jquery.js'></script>
+        <script type='text/javascript' src='/js/jquery.nyroModal.pack.js'></script>
+        {% block js_content %}{% endblock %}
+        
+    </head> 
+    <body>
+        <!-- Header --> 
+        <header id="top"> 
+            <div class="wrapper"> 
+                <!-- Title/Logo - can use text instead of image --> 
+                <div id="title">InTake</div> 
+                <p>import SplunkMinusTheSuck</p>
+                <!-- Top navigation --> 
+                <div id="topnav"> 
+                
+                    {% if request.user.id > 0 %}
+                        <a href="#"><img class="avatar" src="/images/user_32.png" alt="" /></a> 
+                        Logged in as <b>{{request.user.username}}</b> 
+                        <span>|</span> <a href="/logout/">Logout</a><br /> 
+                    {% else %}
+                        <a href="/login/">Login</a><br /> 
+                    
+                    {% endif %}
+                </div> 
+                <!-- End of Top navigation --> 
+                <!-- Main navigation --> 
+                
+                {% load menu_select %}
+                
+                
+                <nav id="menu"> 
+                    {% if request.user.id > 0 %}
+                        <ul class="sf-menu"> 
+                            <li {{request.META.PATH_INFO|section:""}}><a href="/">Dashboard</a></li>  
+                            <li {{request.META.PATH_INFO|section:"group"}}><a href="/group/">Groups</a></li> 
+                            <li {{request.META.PATH_INFO|section:"server"}}><a href="/server/">Servers</a></li>
+                            <li {{request.META.PATH_INFO|section:"admin"}}><a href="/admin/">Admin</a></li>
+                        </ul> 
+                    {% endif %}
+                </nav> 
+                <!-- End of Main navigation --> 
+                <!-- Aside links --> 
+                <aside></aside> 
+                <!-- End of Aside links --> 
+            </div> 
+        </header> 
+        <!-- End of Header -->
+        <!-- Page title --> 
+        <div id="pagetitle"> 
+            <div class="wrapper"> 
+                <h1>{% block header %}{% endblock %}</h1> 
+                <!-- Quick search box --> 
+                <!--<form action="" method="get"><input class="" type="text" id="q" name="q" /></form> -->
+            </div> 
+        </div> 
+        <!-- End of Page title -->
+        
+        <div id="page"> 
+            <!-- Wrapper --> 
+            <div class="wrapper"> 
+        
+                {% block content %}{% endblock %}
+        
+            </div>
+        </div>
+        <!-- Page footer --> 
+        <footer id="bottom"> 
+            <div class="wrapper"> 
+            	<!--
+                <nav> 
+                    <a href="#">Blog</a> &middot;
+                    <a href="#">Help</a> &middot;
+                    <a href="#">Contact</a> &middot;
+                    <a href="#">About</a>
+                </nav> 
+                -->
+            </div> 
+        </footer> 
+        <!-- End of Page footer --> 
+    </body>
+</html>

@@ -1,0 +1,42 @@
+/* 
+
+CUSTOM STYLESHEET
+
+Add your custom styles here instead of style.css so it is easier to 
+update the template. Simply copy an existing style from style.css to 
+this file, and modify it to your liking. 
+
+*/
+#slider { height:320px; }
+#slider .scroll-item {
+	height:320px;
+	overflow:hidden;
+
+	width:100%;
+}
+
+.site-width {
+	margin:0 auto;
+	max-width:990px;
+	min-width:990px;
+	position:relative;
+	width:100%;
+}
+
+.diff_plus { background-color: #DFD; color: black;}
+.diff_minus { background-color: #FDD; color: black;}
+#page a.whitelink { color: #FFF; }
+
+div#popText { 
+	position: absolute;
+	background: #FFF;
+	border: 1px solid #000;
+	padding: 5px;
+}
+
+div.log {
+	overflow-y: hidden ! important; overflow-x: auto ! important;
+	overflow: scroll;
+	white-space: pre;
+	width: 800px;
+}
