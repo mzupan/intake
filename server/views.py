@@ -27,9 +27,13 @@ def show_server(request, server=None):
         #
         # grabbing the last 50 logs
         #
-        logs = Log.objects(server=s, log=request.GET['log'])[:50]
+        logs = Log.objects(server=s, log=request.GET['log']).limit(50)
         
-        return render_to_response('server/log.html', {'server': s, 'logs': logs}, context_instance=RequestContext(request))
+        log = ""
+        for l in logs:
+            log += l.line
+            
+        return render_to_response('server/log.html', {'server': s, 'log': log}, context_instance=RequestContext(request))
 
     
     return render_to_response('server/server.html', {'server': s}, context_instance=RequestContext(request))
@@ -41,8 +45,26 @@ def show_group(request, group=None):
         #
         # grabbing the last 50 logs
         #
-        logs = Log.objects(server__in=g.servers, log=request.GET['log'])[:50]
-        
-        return render_to_response('server/log_group.html', {'group': g, 'logs': logs}, context_instance=RequestContext(request))
+        logs = Log.objects(server__in=g.servers, log=request.GET['log']).limit(50).order_by("created")
+        out = []
+        line = ""
+        old = logs[0]
+        for l in logs:
+            if old.server == l.server:
+                line += l.line
+            else:
+                if old is not None:
+                    out.append({'server': old.server, 'line': line})
+                
+                old = l
+                line = l.line
+
+        #
+        # append the last line
+        #
+        if line != "":
+            out.append({'server': old.server, 'line': line})
+            
+        return render_to_response('server/log_group.html', {'group': g, 'logs': out}, context_instance=RequestContext(request))
 
     return render_to_response('server/group.html', {'group': g}, context_instance=RequestContext(request))

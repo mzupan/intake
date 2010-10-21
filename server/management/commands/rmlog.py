@@ -21,7 +21,7 @@ class Command(BaseCommand):
             string = reader_func(prompt + ': ')
             if not required:
                 break
-        return string
+        return string.strip()
     
     def handle(self, **kwargs):
         if kwargs['server']:

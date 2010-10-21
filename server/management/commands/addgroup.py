@@ -18,7 +18,7 @@ class Command(BaseCommand):
             string = reader_func(prompt + ': ')
             if not required:
                 break
-        return string
+        return string.strip().strip()
 
     def handle(self, **kwargs):
         while True:

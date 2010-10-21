@@ -40,3 +40,6 @@ div.log {
 	white-space: pre;
 	width: 800px;
 }
+div.fulllog {
+	width: 1000px;
+}

@@ -13,12 +13,15 @@ class Command(BaseCommand):
         make_option('--group', '-g', dest='group', help='Add a log to a group', default=False, action='store_true'),
     )
     
-    def _get_string(self, prompt, reader_func=raw_input):
+    def _get_string(self, prompt, reader_func=raw_input, required=True):
         """Helper method to get a non-empty string.
         """
         string = ''
-        string = reader_func(prompt + ': ')
-        return string
+        while not string:
+            string = reader_func(prompt + ': ')
+            if not required:
+                break
+        return string.strip().strip()
     
     def handle(self, **kwargs):
         if kwargs['server']:
@@ -47,7 +50,7 @@ class Command(BaseCommand):
 
 
         while True:
-            log = self._get_string('Enter full path to log (hit enter to exit)')
+            log = self._get_string('Enter full path to log (hit enter to exit)', required=False)
 
             if log == "":
                 break
