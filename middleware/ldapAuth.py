@@ -27,7 +27,7 @@ class LDAPBackend:
             l.simple_bind_s(result_data[0][0],password)
             
             u = User.objects(username=username).first()
-            if len(u) == 0:
+            if u is None:
                 from random import choice
                 import string
                 temp_pass = ""
