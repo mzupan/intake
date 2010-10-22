@@ -82,7 +82,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'middleware.ldapAuth.LDAPBackend',
+#    'middleware.ldapAuth.LDAPBackend',
     'mongoengine.django.auth.MongoEngineBackend',
 )
 SESSION_ENGINE = 'mongoengine.django.sessions'
