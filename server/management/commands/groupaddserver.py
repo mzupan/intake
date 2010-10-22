@@ -13,17 +13,23 @@ class Command(BaseCommand):
         string = ''
         while not string:
             string = reader_func(prompt + ': ')
+            
+            if string == "q":
+                sys.exit()
+            
             if not required:
                 break
-        return string.strip().strip()
+        return string.strip()
     
     def handle(self, **kwargs):
-        groups = ServerGroup.objects()
+        groups = ServerGroup.objects().order_by('name')
 
         i = 1
         for g in groups:
             print '%i) %s' % (i, g.name)
             i += 1
+        
+        print 'q) Quit'
 
         num = self._get_string('Enter number to edit')
         
@@ -33,12 +39,13 @@ class Command(BaseCommand):
         print "Editing %s now..." % g
         print 
         
-        servers = Server.objects()
+        servers = Server.objects().order_by('name')
         
         i = 1
         for s in servers:
             print '%i) %s' % (i, s.host)
-            i += 1
+            i += 1l;s
+            
         
         num = self._get_string('Enter number to to add to the group')
         

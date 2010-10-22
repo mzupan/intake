@@ -11,6 +11,10 @@ class Server(Document):
     logs = ListField(StringField())
     active = BooleanField(default=True)
     
+    meta = {
+        'ordering': ['+host']
+    }
+    
     def __unicode__(self):
         return self.host
     
@@ -24,7 +28,10 @@ class Server(Document):
             if group.logs is not None:
                 logs.extend(group.logs) 
         
-        return list(set(logs))
+        list(set(logs))
+        logs.sort()
+
+        return logs
 
 class ServerGroup(Document):
     name = StringField()
@@ -36,11 +43,27 @@ class ServerGroup(Document):
     group = ReferenceField('ServerGroup', required=False, default=None)
     servers = ListField(ObjectIdField())
     
+    meta = {
+        'ordering': ['+name']
+    }
+    
     def __unicode__(self):
         return self.name
+    
+    def get_logs(self):
+        logs = self.logs
+        
+        list(set(logs))
+        logs.sort()
+
+        return logs
     
 class Log(Document):
     server = ReferenceField(Server)
     created = DateTimeField(default=datetime.datetime.now())
     log = StringField()
     line = StringField()
+
+    meta = {
+        'ordering': ['-created']
+    }

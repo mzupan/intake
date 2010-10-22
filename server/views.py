@@ -45,7 +45,7 @@ def show_group(request, group=None):
         #
         # grabbing the last 50 logs
         #
-        logs = Log.objects(server__in=g.servers, log=request.GET['log']).limit(50).order_by("created")
+        logs = Log.objects(server__in=g.servers, log=request.GET['log']).limit(50)
         out = []
         line = ""
         old = logs[0]

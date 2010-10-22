@@ -18,7 +18,6 @@ class Command(BaseCommand):
         user = User.objects(username=username).first()
         if user:
             user.delete()
-            print 'User "%s %s" successfully removed' % (user.first_name, 
-                                                         user.last_name)
+            print 'User "%s" successfully removed' % (username)
         else:
             print 'Error! Could not find user with username "%s"' % username
