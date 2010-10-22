@@ -82,6 +82,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'middleware.ldapAuth.LDAPBackend',
     'mongoengine.django.auth.MongoEngineBackend',
 )
 SESSION_ENGINE = 'mongoengine.django.sessions'
@@ -133,3 +134,14 @@ LOGIN_EXEMPT_URLS = (
 LOGOUT_URL = "/"
 
 SESSION_SAVE_EVERY_REQUEST = True
+
+
+#
+# LDAP Settings
+#
+#LDAP_SERVER = "ldap://ldap.domain.com:389/"
+#LDAP_BASE = "dc=domain,dc=com"
+#LDAP_EMAIL_DOMAIN = "@domain.com"
+
+
+from settings_local import *

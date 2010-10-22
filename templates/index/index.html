@@ -15,25 +15,10 @@
 	<aside class="column width2">
 		<div id="rightmenu">
 			<header>
-				<h3>Your Account</h3>
+				<h3>Overview</h3>
 			</header>
 			<dl class="first">
-				<dt><img width="16" height="16" src="/images/date.png"></dt>
-				{% if request.session.organization.billable %}
-				
-				{% else %}
-					<dd>Trail Account</dd>
-					<dd class="last"><strong>Time Left: {{request.session.organization.expire|timeuntil}}</strong></dd>
-				
-				
-					<dt><img width="16" height="16" src="/images/cart.png"></dt>
-					<dd><a href="/upgrade/">Upgrade</a></dd>
-					<dd class="last">Upgrade today and continue the service.</dd>
-				{% endif %}
-	
-				<dt><img width="16" height="16" src="/images/server.png"></dt>
-				<dd><a href="/servers/">Server Usage</a></dd>
-				<dd class="last">Using <strong>{{request.session.organization.server_usage}}</strong> out of <strong>{{request.session.organization.server_total}}</strong> server licenses.</dd>
+				Something will go here
 			</dl>
 		</div>
 	</aside>
