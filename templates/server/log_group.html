@@ -7,22 +7,25 @@
 
 {% block content %}
 	<section class="column width8 first">
-		<table id="report" class="stylized full" style="">
-			<thead>
-				<tr>
-					<th>Server</th>
-					<th>Log</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for log in logs %}
+
+		<div class="log">
+			<table id="report" class="stylized full" style="">
+				<thead>
 					<tr>
-						<td class="">{{log.server}}</td>
-						<td class=""><div class="log">{{log.line|linebreaksbr}}</div></td>
+						<th>Server</th>
+						<th>Log</th>
 					</tr>
-				{% endfor %}	
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{% for log in logs %}
+						<tr>
+							<td class="">{{log.server}}</td>
+							<td class="">{{log.line|linebreaksbr}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
 	</section>
 	

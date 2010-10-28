@@ -7,21 +7,21 @@
 
 {% block content %}
 	<section class="column width8 first">
-		<table id="report" class="stylized full">
-			<thead>
-				<tr>
-					<th>Log</th>
-				</tr>
-			</thead>
-			<tbody>
-
+	
+		<div class="log fulllog">
+			<table id="report" class="stylized full">
+				<thead>
 					<tr>
-						<td class=""><div class="log fulllog">{{log|linebreaksbr}}</div></td>
+						<th>Log</th>
 					</tr>
-
-			</tbody>
-		</table>
-
+				</thead>
+				<tbody>
+					<tr>
+						<td class="">{{log|linebreaksbr}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
 	
 	
