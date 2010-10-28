@@ -42,22 +42,25 @@ def show_group(request, group=None):
     g = ServerGroup.objects(slug=group).first()
     
     if request.GET.has_key('log'):
+        out = []
+        line = ""
+        
         #
         # grabbing the last 50 logs
         #
         logs = Log.objects(server__in=g.servers, log=request.GET['log']).limit(50)
-        out = []
-        line = ""
-        old = logs[0]
-        for l in logs:
-            if old.server == l.server:
-                line += l.line
-            else:
-                if old is not None:
-                    out.append({'server': old.server, 'line': line})
-                
-                old = l
-                line = l.line
+        
+        if logs.count() > 0:
+            old = logs[0]
+            for l in logs:
+                if old.server == l.server:
+                    line += l.line
+                else:
+                    if old is not None:
+                        out.append({'server': old.server, 'line': line})
+                    
+                    old = l
+                    line = l.line
 
         #
         # append the last line
