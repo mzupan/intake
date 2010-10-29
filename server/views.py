@@ -25,10 +25,16 @@ def show_server(request, server=None):
     s = Server.objects(host=server).first()
 
     if request.GET.has_key('log'):
-        #
-        # grabbing the last 50 logs
-        #
-        logs = Log.objects(server=s, log=request.GET['log']).limit(50)
+        if request.method == "POST":
+            #
+            # grabbing the last 50 logs from our search string
+            #
+            logs = Log.objects(server=s, log=request.GET['log'], line__icontains=request.POST['search']).limit(50)
+        else:
+            #
+            # grabbing the last 50 logs
+            #
+            logs = Log.objects(server=s, log=request.GET['log']).limit(50)
         
         log = ""
         for l in logs:

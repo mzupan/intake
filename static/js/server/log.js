@@ -7,6 +7,6 @@ $(document).ready(function(){
 	}); 
 	
 	$('a#show_search').click(function() {
-		$('div.search').show(500);
+		$('div.search').toggle(500);
 	});
 }); 
