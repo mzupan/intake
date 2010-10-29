@@ -44,7 +44,7 @@
                 <!-- Top navigation --> 
                 <div id="topnav"> 
                 
-                    {% if request.user.id > 0 %}
+                    {% if request.user.id %}
                         <a href="#"><img class="avatar" src="/images/user_32.png" alt="" /></a> 
                         Logged in as <b>{{request.user.username}}</b> 
                         <span>|</span> <a href="/logout/">Logout</a><br /> 

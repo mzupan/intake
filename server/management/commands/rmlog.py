@@ -19,6 +19,10 @@ class Command(BaseCommand):
         string = ''
         while not string:
             string = reader_func(prompt + ': ')
+            
+            if string == "q":
+                sys.exit()
+                
             if not required:
                 break
         return string.strip()
