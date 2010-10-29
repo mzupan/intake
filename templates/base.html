@@ -60,7 +60,7 @@
                 
                 
                 <nav id="menu"> 
-                    {% if request.user.id > 0 %}
+                    {% if request.user.id %}
                         <ul class="sf-menu"> 
                             <li {{request.META.PATH_INFO|section:""}}><a href="/">Dashboard</a></li>  
                             <li {{request.META.PATH_INFO|section:"group"}}><a href="/group/">Groups</a></li> 
