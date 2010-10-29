@@ -65,5 +65,6 @@ class Log(Document):
     line = StringField()
 
     meta = {
-        'ordering': ['-created']
+        'ordering': ['-created'],
+        'indexes': ['-created']
     }
