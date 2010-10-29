@@ -34,7 +34,7 @@ class Command(BaseCommand):
         num = self._get_string('Enter number to edit')
         
         g = groups[int(num)-1]
-        
+
         print
         print "Editing %s now..." % g
         print 
@@ -43,8 +43,9 @@ class Command(BaseCommand):
         
         i = 1
         for s in servers:
-            print '%i) %s' % (i, s.host)
-            i += 1l;s
+            if s.id not in g.servers:
+                print '%i) %s' % (i, s.host)
+                i += 1l;s
             
         
         num = self._get_string('Enter number to to add to the group')
