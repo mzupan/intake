@@ -2,7 +2,7 @@
 	Spy - <a href="javascript://" id="show_search">Search</a>
 </div>
 
-<div class="search">
+<div class="search" style="{% if request.POST.search %}{% else %}display: none;{% endif %}">
 	<form method="POST">
 		{% csrf_token %}
 		
