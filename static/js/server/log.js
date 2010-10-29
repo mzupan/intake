@@ -5,4 +5,8 @@ $(document).ready(function(){
 		title : '"%term%".',
 		text : '<strong>Add an alert?</strong> <p><a href="">Yes</a> - <a href="">No</a></p>'
 	}); 
+	
+	$('a#show_search').click(function() {
+		$('div.search').show(500);
+	});
 }); 
