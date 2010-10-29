@@ -1,0 +1,14 @@
+<div>
+	Spy - <a href="javascript://" id="show_search">Search</a>
+</div>
+
+<div class="search">
+	<form method="POST">
+		{% csrf_token %}
+		
+		<label>Search String:</label>
+		<input type="text" id="search" value="{{request.POST.search}}" name="search">
+		
+		<input type="submit" value="Search">
+	</form>
+</div>

@@ -2,26 +2,32 @@
 
 {% block js_content %}
 	<script type='text/javascript' src='/js/jquery.selectlink.js'></script>
-	<script type='text/javascript' src='/js/server/select.js'></script>
+	<script type='text/javascript' src='/js/server/log.js'></script>
+	
+	{% if request.GET.spy %}
+		<script type='text/javascript' src='/js/server/spy.js'></script>
+		<script type='text/javascript' src='/js/server/spy_init.js'></script>
+	{% endif %}
+	
 {% endblock %}
 
 {% block content %}
 	<section class="column width8 first">
 	
-		<div class="log fulllog">
+		
 			<table id="report" class="stylized full">
 				<thead>
 					<tr>
 						<th>Log</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="holder">
 					<tr>
-						<td class="">{{log|linebreaksbr}}</td>
+						<td class=""><div class="log">{{log|linebreaksbr}}</div></td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
+		
 	</section>
 	
 	

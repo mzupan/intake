@@ -33,13 +33,9 @@ div#popText {
 	border: 1px solid #000;
 	padding: 5px;
 }
-
-div.log {
-	overflow-y: hidden ! important; overflow-x: auto ! important;
-	overflow: scroll;
-	white-space: pre;
-	width: 800px;
-}
-div.fulllog {
-	width: 1000px;
+div.search {
+	border: 1px solid #999;
+	padding: 5px;
+	margin-top: 10px;
+	display: none;
 }

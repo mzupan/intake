@@ -2,13 +2,19 @@
 
 {% block js_content %}
 	<script type='text/javascript' src='/js/jquery.selectlink.js'></script>
-	<script type='text/javascript' src='/js/server/select.js'></script>
+	<script type='text/javascript' src='/js/server/log.js'></script>
+	
+	{% if request.GET.spy %}
+		<script type='text/javascript' src='/js/server/spy.js'></script>
+		<script type='text/javascript' src='/js/server/spy_init.js'></script>
+	{% endif %}
 {% endblock %}
 
 {% block content %}
 	<section class="column width8 first">
-
-		<div class="log">
+			
+			{% include "server/includes/log_header.html" %}
+		
 			<table id="report" class="stylized full" style="">
 				<thead>
 					<tr>
@@ -16,16 +22,16 @@
 						<th>Log</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="holder">
 					{% for log in logs %}
 						<tr>
 							<td class="">{{log.server}}</td>
-							<td class="">{{log.line|linebreaksbr}}</td>
+							<td class=""><div class="log">{{log.line|linebreaksbr}}</div></td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
-		</div>
+		
 
 	</section>
 	

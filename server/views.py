@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.decorators.csrf import csrf_exempt
 
 from server.models import ServerGroup, Server, Log
 
@@ -45,10 +46,16 @@ def show_group(request, group=None):
         out = []
         line = ""
         
-        #
-        # grabbing the last 50 logs
-        #
-        logs = Log.objects(server__in=g.servers, log=request.GET['log']).limit(50)
+        if request.method == "POST":
+            #
+            # grabbing the last 50 logs from our search string
+            #
+            logs = Log.objects(server__in=g.servers, log=request.GET['log'], line__icontains=request.POST['search']).limit(50)
+        else:
+            #
+            # grabbing the last 50 logs
+            #
+            logs = Log.objects(server__in=g.servers, log=request.GET['log']).limit(50)
         
         if logs.count() > 0:
             old = logs[0]
@@ -71,3 +78,7 @@ def show_group(request, group=None):
         return render_to_response('server/log_group.html', {'group': g, 'logs': out}, context_instance=RequestContext(request))
 
     return render_to_response('server/group.html', {'group': g}, context_instance=RequestContext(request))
+
+@csrf_exempt
+def ajax_get_latest(request):
+    return HttpResponse("1")
