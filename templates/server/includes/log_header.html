@@ -11,4 +11,12 @@
 		
 		<input type="submit" value="Search">
 	</form>
+	
+	{% if request.POST.search %}
+		<script type="text/javascript">
+			$(document).ready(function(){ 
+				$('div.log').highlight('{{request.POST.search}}');
+			});
+		</script>
+	{% endif %}
 </div>
