@@ -9,7 +9,7 @@ from server.models import ServerGroup, Server
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
-        make_option('--server', '-s', dest='server', help='Add a log to a server', default=False, action='store_true'),
+        make_option('--server', '-s', dest='server', help='Add a log to a server', default=True, action='store_true'),
         make_option('--group', '-g', dest='group', help='Add a log to a group', default=False, action='store_true'),
     )
     
@@ -58,5 +58,9 @@ class Command(BaseCommand):
                 #
                 # append the log to it
                 #
-                obj.logs.append(log)
+                if obj.logs is None:
+                    obj.logs = [log]
+                else:
+                    obj.logs.append(log)
+                
                 obj.save()
