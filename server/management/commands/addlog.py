@@ -28,7 +28,18 @@ class Command(BaseCommand):
         return string.strip().strip()
     
     def handle(self, **kwargs):
-        if kwargs['server']:
+        if kwargs['group']:
+            groups = ServerGroup.objects()
+    
+            i = 1
+            for g in groups:
+                print '%i) %s' % (i, g.name)
+                i += 1
+    
+            num = self._get_string('Enter number to add to')
+        
+            obj = groups[int(num)-1]
+        elif kwargs['server']:
             servers = Server.objects()
             
             i = 1
@@ -41,18 +52,6 @@ class Command(BaseCommand):
             num = self._get_string('Enter number to add to')
             
             obj = servers[int(num)-1]
-        
-        if kwargs['group']:
-            groups = ServerGroup.objects()
-    
-            i = 1
-            for g in groups:
-                print '%i) %s' % (i, g.name)
-                i += 1
-    
-            num = self._get_string('Enter number to add to')
-        
-            obj = groups[int(num)-1]
 
 
         while True:
