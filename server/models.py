@@ -58,6 +58,15 @@ class ServerGroup(Document):
 
         return logs
     
+    def get_servers(self):
+        return Server.objects(id__in=self.servers)
+    
+    def get_log_count(self):
+        return len(self.logs)
+    
+    def get_log_lines(self):
+        return Log.objects(server__in=self.servers).count()
+    
 class Log(Document):
     server = ReferenceField(Server)
     created = DateTimeField(default=datetime.datetime.now())

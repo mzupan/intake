@@ -27,7 +27,16 @@
 				<h3>Overview</h3>
 			</header>
 			<dl class="first">
-				Comming soon
+				<h3>Servers in the group</h3>
+				{% for server in group.get_servers %}
+					<a href="/server/{{server.host}}/">{{server}}</a><br />
+				{% endfor %}
+			</dl>
+			
+			<dl class="first">
+				<h3>Log Information</h3>
+				{{group.get_log_count}} log{{ group.get_log_count|pluralize }} monitored. <br />
+				{{group.get_log_lines}} lines logged so far.
 			</dl>
 		</div>
 	</aside>
