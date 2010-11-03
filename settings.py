@@ -83,10 +83,7 @@ MIDDLEWARE_CLASSES = (
     
 )
 
-AUTHENTICATION_BACKENDS = (
-#    'middleware.ldapAuth.LDAPBackend',
-    'mongoengine.django.auth.MongoEngineBackend',
-)
+
 SESSION_ENGINE = 'mongoengine.django.sessions'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -113,6 +110,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'django.contrib.humanize',
     
     'index',
     'server',

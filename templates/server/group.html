@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load humanize %}
 
 {% block content %}
 	<section class="column width6 first">
@@ -35,8 +36,8 @@
 			
 			<dl class="first">
 				<h3>Log Information</h3>
-				{{group.get_log_count}} log{{ group.get_log_count|pluralize }} monitored. <br />
-				{{group.get_log_lines}} lines logged so far.
+				{{group.get_log_count|intcomma}} log{{ group.get_log_count|pluralize }} monitored. <br />
+				{{group.get_log_lines|intcomma}} lines logged so far.
 			</dl>
 		</div>
 	</aside>
