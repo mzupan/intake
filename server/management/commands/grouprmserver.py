@@ -43,12 +43,12 @@ class Command(BaseCommand):
 
         i = 1
         for s in Server.objects().order_by('name'):
-            if s.id not in g.servers:
+            if s.id in g.servers:
                 print '%i) %s' % (i, s.host)
                 i += 1l;s
                 servers.append(s)
             
-        num = self._get_string('Enter number to to add to the group')
+        num = self._get_string('Enter number to to delete from the group')
         
-        g.servers.append(servers[int(num)-1].id)
+        g.servers.remove(servers[int(num)-1].id)
         g.save()
