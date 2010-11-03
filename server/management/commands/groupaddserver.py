@@ -39,15 +39,15 @@ class Command(BaseCommand):
         print "Editing %s now..." % g
         print 
         
-        servers = Server.objects().order_by('name')
-        
+        servers = []
+
         i = 1
-        for s in servers:
+        for s in Server.objects().order_by('name'):
             if s.id not in g.servers:
                 print '%i) %s' % (i, s.host)
                 i += 1l;s
+                servers.append(s)
             
-        
         num = self._get_string('Enter number to to add to the group')
         
         g.servers.append(servers[int(num)-1].id)
