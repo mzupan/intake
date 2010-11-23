@@ -75,5 +75,5 @@ class Log(Document):
 
     meta = {
         'ordering': ['-created'],
-        'indexes': ['-created']
+        'indexes': ['-created', 'log']
     }
